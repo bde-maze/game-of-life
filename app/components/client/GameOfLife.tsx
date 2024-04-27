@@ -188,13 +188,10 @@ export const GameOfLife = () => {
       if (
         JSON.stringify(newGrid) === JSON.stringify(grid) ||
         JSON.stringify(newGrid) ===
-          JSON.stringify(
-            history[history.length - 1] ||
-              JSON.stringify(newGrid) ===
-                JSON.stringify(history[history.length - 2]) ||
-              JSON.stringify(newGrid) ===
-                JSON.stringify(history[history.length - 3])
-          )
+          JSON.stringify(history[history.length - 1]) ||
+        JSON.stringify(newGrid) ===
+          JSON.stringify(history[history.length - 2]) ||
+        JSON.stringify(newGrid) === JSON.stringify(history[history.length - 3])
       ) {
         // If infinite mode is on, add a random pattern else pause the game
         if (isInfinite) {
