@@ -236,7 +236,10 @@ export const GameOfLife = () => {
           <Button onClick={nextIteration}>Next iteration</Button>
         </div>
         <div className="flex items-center justify-between mb-5">
-          <div>Iteration : {iteration}</div>
+          <div>
+            <div>Iteration : {iteration}</div>
+            <div>Population : {grid.flat().filter(Boolean).length}</div>
+          </div>
           <button
             type="button"
             className={`${

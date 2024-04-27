@@ -20,12 +20,12 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en" className={`${jersey20Charted.variable}`}>
       <body>
-        <header className="flex justify-between my-8 mx-16">
+        <header className="flex justify-between mb-8 mx-16">
           <div className="w-full" />
-          <h1 className="font-mono text-4xl sm:text-8xl text-center px-5 mb-8 w-full whitespace-nowrap">
+          <h1 className="font-mono text-4xl sm:text-8xl text-center px-5 w-full whitespace-nowrap">
             ~ Game of Life ~
           </h1>
-          <div className="w-full flex justify-end">
+          <div className="w-full flex justify-end items-center">
             <LinkToGithubRepo />
           </div>
         </header>
