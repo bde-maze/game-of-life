@@ -1,5 +1,9 @@
+'use client'
+
+// Packages
 import { PauseIcon, PlayIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
+import { useWindowSize } from 'react-use'
 
 type GridMatrix = {
   rows: number
@@ -24,7 +28,19 @@ export const Button = ({
   )
 }
 
-export const GameOfLife = ({ rows, cols }: GridMatrix) => {
+export const GameOfLife = () => {
+  // Get the screen size
+  const { width: screenWidth, height: screenHeight } = useWindowSize()
+
+  // Calculate the grid size based on the screen size
+  const gameGrid: GridMatrix = {
+    rows: Math.round(screenHeight / 12),
+    cols: Math.round(screenWidth / 9),
+  }
+
+  const rows = gameGrid.rows
+  const cols = gameGrid.cols
+
   // Methods
   const createEmptyGrid = (rows: number, cols: number) => {
     return Array(rows)
@@ -196,10 +212,10 @@ export const GameOfLife = ({ rows, cols }: GridMatrix) => {
   })
 
   return (
-    <>
+    <div className="p-5 flex justify-center">
       <div>
         {/* Game controls */}
-        <div className="flex justify-between flex-wrap mb-5">
+        <div className="flex justify-center gap-y-3 gap-x-3 flex-wrap mb-5">
           <Button onClick={playPause}>
             {isRunning ? (
               <div className="flex items-center gap-1">
@@ -238,23 +254,24 @@ export const GameOfLife = ({ rows, cols }: GridMatrix) => {
 
         {/* Game Grid */}
         <div className="rounded-lg border-4 border-black p-3 shadow-xl">
-          {grid.map((row, rowIndex) => (
-            <div key={rowIndex} className="flex">
-              {row.map((cell, colIndex) => (
-                <div
-                  key={colIndex}
-                  className={`${
-                    cell ? 'bg-black' : 'bg-white hover:bg-gray-200'
-                  } border-[0.5px] border-gray-400 cursor-pointer w-2 h-2`}
-                  onClick={() => {
-                    updateCell(rowIndex, colIndex)
-                  }}
-                ></div>
-              ))}
-            </div>
-          ))}
+          {grid &&
+            grid.map((row, rowIndex) => (
+              <div key={rowIndex} className="flex">
+                {row.map((cell, colIndex) => (
+                  <div
+                    key={colIndex}
+                    className={`${
+                      cell ? 'bg-black' : 'bg-white hover:bg-gray-200'
+                    } border-[0.5px] border-gray-400 cursor-pointer w-2 h-2`}
+                    onClick={() => {
+                      updateCell(rowIndex, colIndex)
+                    }}
+                  ></div>
+                ))}
+              </div>
+            ))}
         </div>
       </div>
-    </>
+    </div>
   )
 }

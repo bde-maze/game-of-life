@@ -12,10 +12,10 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en" className={`${jersey20Charted.variable}`}>
       <body>
-        <h1 className="font-mono text-8xl text-center px-5 mb-8">
+        <h1 className="font-mono text-4xl sm:text-8xl text-center px-5 mb-8">
           ~ Game of Life ~
         </h1>
-        <div className="p-5 flex justify-center">{children}</div>
+        {children}
       </body>
     </html>
   )
